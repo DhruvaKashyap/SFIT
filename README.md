@@ -41,3 +41,5 @@ Interactive add
 Creates a stash
 
 3. sfit remote operations
+
+4. **Ambitious** Publish this as a python package on pypi
