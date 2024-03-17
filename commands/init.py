@@ -1,4 +1,5 @@
 from argparse import ArgumentParser
+import os 
 
 def initialize(subparsers):
   subparser: ArgumentParser = subparsers.add_parser("init", help="initialize sfit for filename")
@@ -6,7 +7,27 @@ def initialize(subparsers):
   subparser.set_defaults(func=main)
 
 def main(args):
-  ...
+  # Create .sfit folder
+  try:
+    os.makedirs(".sfit")
+  except OSError as e:
+    print("sfit already initialized")
+    return
+  
+  # Create config file
+  config = os.path.join(".sfit", "config")
+  with open(config, "w") as f:
+    f.write(args.filename)
+
+  # Create .sfit folders
+  folders = ["refs", "objects"]
+  for folder in folders:
+    os.makedirs(os.path.join(".sfit", folder))
+
+  # Create refs file
+    os.makedirs(os.path.join(".sfit", "refs", "heads"), exist_ok=True)
+    os.makedirs(os.path.join(".sfit", "refs", "tags"), exist_ok=True)
+
 
 if __name__ == "__main__":
   print("invalid usage")
