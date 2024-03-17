@@ -49,4 +49,6 @@ Creates a stash
 In no particular order,
 
 - Dhruva Kashyap: https://github.com/DhruvaKashyap/
+- Anirudh Gupta: https://github.com/AnirudhG07/
+- Siddharth Reddy: https://github.com/SidZRed/
 - Keval Pithadiya: https://github.com/kevalpithadiya/
