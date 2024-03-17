@@ -25,8 +25,9 @@ def main(args):
     os.makedirs(os.path.join(".sfit", folder))
 
   # Create refs file
-    os.makedirs(os.path.join(".sfit", "refs", "heads"), exist_ok=True)
-    os.makedirs(os.path.join(".sfit", "refs", "tags"), exist_ok=True)
+    
+  os.makedirs(os.path.join(".sfit", "refs", "heads"), exist_ok=True)
+  os.makedirs(os.path.join(".sfit", "refs", "tags"), exist_ok=True)
 
 
 if __name__ == "__main__":
