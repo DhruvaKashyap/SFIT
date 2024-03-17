@@ -52,3 +52,4 @@ In no particular order,
 - Anirudh Gupta: https://github.com/AnirudhG07/
 - Siddharth Reddy: https://github.com/SidZRed/
 - Keval Pithadiya: https://github.com/kevalpithadiya/
+- Pratham Gupta: https://github.com/PrathamGupta423
