@@ -1,12 +1,12 @@
-from argparse import ArgumentParser
+from argparse import ArgumentParser, Namespace
 from pathlib import Path
 
 def initialize(subparsers):
   subparser: ArgumentParser = subparsers.add_parser("init", help="initialize sfit for filename")
   subparser.add_argument("filename", help="name of file to be tracked")
-  subparser.set_defaults(func=main)
+  subparser.set_defaults(func=command_handler)
 
-def main(args):
+def command_handler(args: Namespace):
   # Create .sfit folder
   sfit_folder = Path(".sfit")
   try:
