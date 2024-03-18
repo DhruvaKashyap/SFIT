@@ -26,7 +26,7 @@ def parse_args() -> argparse.Namespace:
 
   return parser.parse_args()
 
-def main(args) -> int:
+def main(args: argparse.Namespace) -> int:
   if hasattr(args, "func"):
     args.func(args)
   else:
