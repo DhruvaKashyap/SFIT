@@ -29,6 +29,8 @@ def command_handler(args: Namespace):
   f = open(pathOfFolder+"/.sfit/objects/"+ hash, 'w')
   f.write(contentsInFile)
 
+  #to be added...
+
 
 
 
