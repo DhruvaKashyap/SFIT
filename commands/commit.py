@@ -1,6 +1,7 @@
 from argparse import ArgumentParser, Namespace
 import hashlib
 from datetime import datetime
+import os
 
 def initialize(subparsers):
 
