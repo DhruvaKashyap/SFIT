@@ -30,7 +30,6 @@ def command_handler(args: Namespace):
     blobHash = (hashlib.sha1(contentsInFile.encode())).hexdigest()
 
     #creating commit hash
-    commitHash = (hashlib.sha1(("commit" + str(len(contentsInFile))+"\0"  + contentsInFile).encode())).hexdigest()
     
 
     #creating blob object in .sfit/objects with hash as file name and contents as the original file contents
@@ -50,11 +49,14 @@ def command_handler(args: Namespace):
         headFile.close()
 
         #creating commit object
-        commitObjectFile = open('.sfit/objects/'+commitHash, 'w')
 
         author = "" #need to collect it from config file but not yet decided on the format of config file        
         commitMessage = args.message # needs verification
-        commitObjectContent = "blob " + blobHash +"\n"+"parent " + "NULL" + "\n"+ "author "+ author + " " + datetime.utcnow() +'\n' + commitMessage
+        commitObjectContent = "blob " + blobHash +"\n"+"parent " + "NULL" + "\n"+ "author "+ author + " " + str(datetime.utcnow()) +'\n' + commitMessage
+        commitHash = (hashlib.sha1(commitObjectContent.encode())).hexdigest()
+
+        commitObjectFile = open('.sfit/objects/'+commitHash, 'w')
+
         commitObjectFile.write(commitObjectContent)
         commitObjectFile.close()
     else:
@@ -66,15 +68,18 @@ def command_handler(args: Namespace):
         branchReferenceFile.write(blobHash)
         branchReferenceFile.close()
 
+
         #creating commit object
+
+        author = "" #need to collect it from config file but not yet decided on the format of config file        
+        commitMessage = args.message # needs verification
+
+        commitObjectContent = "blob " + blobHash +"\n"+"parent " + parentCommitHash + "\n"+ "author "+ author + " " + str(datetime.utcnow()) +'\n' + commitMessage
+        commitHash = (hashlib.sha1(commitObjectContent.encode())).hexdigest()
+
         commitObjectFile = open('.sfit/objects/'+commitHash, 'w')
-        author = "" #need to collect it from config file but not yet decided on the format of config file
-        commitMessage = args.message
-        commitObjectContent = "blob " + blobHash +"\n"+"parent " + parentCommitHash + "\n"+ "author "+ author +" " + datetime.utcnow() + '\n' + commitMessage
-        
         commitObjectFile.write(commitObjectContent)
         commitObjectFile.close()
-
 
 if __name__ == "__main__":
     raise Exception("invalid usage")
