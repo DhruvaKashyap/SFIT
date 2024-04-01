@@ -40,9 +40,6 @@ def command_handler(args: Namespace):
     #check if HEAD exists
     if not os.path.exists(".sfit/HEAD"):
         #init commit has to be made
-        branchReferenceFile = open(".sfit/refs/heads/main", 'w')
-        branchReferenceFile.write(blobHash)
-        branchReferenceFile.close()
 
         headFile = open(".sfit/HEAD")
         headFile.write("/heads/main")
@@ -59,14 +56,18 @@ def command_handler(args: Namespace):
 
         commitObjectFile.write(commitObjectContent)
         commitObjectFile.close()
+
+        #creating the branch reference file and writing the commit hash to it
+        branchReferenceFile = open(".sfit/refs/heads/main", 'w')
+        branchReferenceFile.write(commitHash)
+        branchReferenceFile.close()
     else:
         #not init commit
         headFile = open('.sfit/HEAD', 'r')
         branchReference = headFile.read()
+        headFile.close()
         branchReferenceFile = open(branchReference, 'r+')
         parentCommitHash = branchReferenceFile.read()
-        branchReferenceFile.write(blobHash)
-        branchReferenceFile.close()
 
 
         #creating commit object
@@ -80,6 +81,10 @@ def command_handler(args: Namespace):
         commitObjectFile = open('.sfit/objects/'+commitHash, 'w')
         commitObjectFile.write(commitObjectContent)
         commitObjectFile.close()
+
+        #rewriting the branch reference file to store the commit hash
+        branchReferenceFile.write(commitHash)
+        branchReferenceFile.close()
 
 if __name__ == "__main__":
     raise Exception("invalid usage")
