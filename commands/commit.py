@@ -48,7 +48,7 @@ def command_handler(args: Namespace):
         #creating commit object
 
         author = "" #need to collect it from config file but not yet decided on the format of config file        
-        commitMessage = args.message # needs verification
+        commitMessage = args.message
         commitObjectContent = "blob " + blobHash +"\n"+"parent " + "NULL" + "\n"+ "author "+ author + " " + str(datetime.utcnow()) +'\n' + commitMessage
         commitHash = (hashlib.sha1(commitObjectContent.encode())).hexdigest()
 
@@ -73,8 +73,7 @@ def command_handler(args: Namespace):
         #creating commit object
 
         author = "" #need to collect it from config file but not yet decided on the format of config file        
-        commitMessage = args.message # needs verification
-
+        commitMessage = args.message
         commitObjectContent = "blob " + blobHash +"\n"+"parent " + parentCommitHash + "\n"+ "author "+ author + " " + str(datetime.utcnow()) +'\n' + commitMessage
         commitHash = (hashlib.sha1(commitObjectContent.encode())).hexdigest()
 
