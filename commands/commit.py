@@ -19,7 +19,7 @@ def command_handler(args: Namespace):
     fileName = ""
     if os.path.exists(".sfit/config"):
         configFile = open(".sfit/config", 'r')
-        fileNameme = configFile.read() # making the assumption that fileName also includes the file extension
+        fileName = configFile.read() # making the assumption that fileName also includes the file extension
         configFile.close()
 
     blobFile = open(fileName, 'r')
